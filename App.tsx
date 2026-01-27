@@ -5,6 +5,41 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, Download, Send, MapPin, ChevronRight, ExternalLink, Code2 } from 'lucide-react';
 import { NAV_LINKS, PROJECTS, SKILLS, STATS, getIcon } from './constants';
 
+const projectCardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+  hover: {
+    y: -12,
+    scale: 1.02,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const PROJECT_GRADIENTS = [
+  "from-blue-500/20 via-indigo-500/20 to-purple-500/20",
+  "from-purple-500/20 via-pink-500/20 to-rose-500/20",
+  "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
+  "from-orange-500/20 via-amber-500/20 to-yellow-500/20",
+  "from-fuchsia-500/20 via-violet-500/20 to-indigo-500/20",
+  "from-lime-500/20 via-green-500/20 to-emerald-500/20",
+];
+
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
@@ -216,15 +251,30 @@ const App: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((project, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="project-card flex flex-col h-full bg-[#111827] rounded-3xl overflow-hidden border border-white/5 group shadow-lg"
+              key={i}
+              variants={projectCardVariants}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
+              viewport={{ once: true }}
+              className={`relative project-card flex flex-col h-full rounded-3xl             overflow-hidden
+                bg-[#0b1220]
+                border border-white/10
+                group
+                transition-all duration-300
+                hover:shadow-[0_0_45px_rgba(255,255,255,0.12)]
+                hover:border-white/30`}
+
               >
                 <div className="relative h-56 overflow-hidden">
                   <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply group-hover:bg-transparent transition-colors duration-500"></div>
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.12 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                  />
                   <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
                     {getIcon(project.icon || 'code', "w-5 h-5")}
                   </div>
@@ -250,6 +300,13 @@ const App: React.FC = () => {
                     </a>
                   </div>
                 </div>
+                <div
+                  className={`pointer-events-none absolute inset-0 rounded-3xl
+                  opacity-0 group-hover:opacity-100
+                  transition-opacity duration-500
+                  bg-gradient-to-br ${PROJECT_GRADIENTS[i % PROJECT_GRADIENTS.length]}`}
+                />
+                   
               </motion.div>
             ))}
           </div>
