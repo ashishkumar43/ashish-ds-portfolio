@@ -184,7 +184,7 @@ const App: React.FC = () => {
               className="space-y-6"
             >
               <p className="text-lg text-slate-400 leading-relaxed">
-                I'm currently pursuing my Bachelor of Technology in Artificial Intelligence and Data Science at University School of Automation and Robotics, GGSIPU, New Delhi (CGPA: 8.7). My journey combines strong academic foundations with hands-on experience in cutting-edge AI technologies.
+                I'm a B.Tech student specializing in Artificial Intelligence and Data Science at the University School of Automation and Robotics, GGSIPU, New Delhi (CGPA: 8.7). My journey combines strong academic foundations with hands-on experience in cutting-edge AI technologies.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
                 Through internships at AICTE and research work at my university, I've gained practical experience in NLP applications, computer vision systems, and building production-ready ML models. I specialize in developing end-to-end AI solutions from data preprocessing to model deployment.
