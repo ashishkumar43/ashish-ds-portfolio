@@ -83,24 +83,35 @@ const App: React.FC = () => {
             <p className="text-slate-400 font-medium">Hi, I am <span className="text-blue-400">Ashish Kumar</span></p>
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
               <span className="text-gradient">AI & Data Science</span><br />
-              <span className="text-slate-200">Engineer</span>
+              <span className="text-slate-200">Enthusiast</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-lg leading-relaxed">
-              B.Tech student specializing in Artificial Intelligence and Data Science at GGSIPU. Building intelligent systems through NLP, Computer Vision, and Machine Learning. Passionate about creating real-world AI solutions.
+              Transforming complex data into actionable insights through machine learning and advanced analytics. Passionate about solving real-world problems with data-driven solutions.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="px-8 py-3 rounded-xl bg-gradient-primary text-white font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity">
-                <FileText size={18} /> View Resume
-              </button>
-              <button className="px-8 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold flex items-center gap-2 transition-all">
-                <Download size={18} /> Download Resume
-              </button>
+              {/* View Resume */}
+              <a
+                href="/Ashish-kumar-Resume(l).pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-xl bg-gradient-primary text-white font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity"
+              >
+              <FileText size={18} /> View Resume
+            </a>
+              {/* Download Resume */}
+              <a
+                href="/Ashish-kumar-Resume(l).pdf"
+                download
+                className="px-8 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold flex items-center gap-2 transition-all"
+              >
+              <Download size={18} /> Download Resume
+            </a>
             </div>
             <div className="flex items-center gap-4 pt-6">
               {[
-                { icon: <Github size={20} />, href: '#' },
-                { icon: <Linkedin size={20} />, href: '#' },
-                { icon: <Code2 size={20} />, href: '#' }
+                { icon: <Github size={20} />, href: 'https://github.com/ashishkumar43' },
+                { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/ashishkumar43/' },
+                { icon: <Code2 size={20} />, href: 'https://www.kaggle.com/ashishkumar43' }
               ].map((social, i) => (
                 <a key={i} href={social.href} className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-blue-500/50 transition-all text-slate-400 hover:text-white">
                   {social.icon}
@@ -155,14 +166,25 @@ const App: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SKILLS.map((category, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all group"
-              >
+          {SKILLS.map((category, i) => (
+            <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -10 }}
+            className="relative group p-8 rounded-3xl
+                       bg-white/5 border border-white/10
+                       backdrop-blur-xl overflow-hidden"
+            >         
+            {/* 🔥 Gradient Glow */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100
+                         transition-opacity duration-500 blur-2xl
+                         bg-gradient-to-r from-blue-500/30
+                         via-purple-500/30 to-pink-500/30"
+            />
                 <div className="w-12 h-12 rounded-xl bg-gradient-primary/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
                   {getIcon(category.icon, "w-6 h-6")}
                 </div>
@@ -340,7 +362,7 @@ const App: React.FC = () => {
       <footer className="py-12 px-6 border-t border-white/5 bg-[#030712]">
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
           <p className="text-slate-500 text-sm">
-            © 2025 Ashish Kumar. Built with React & Motion.
+            © 2026 Ashish Kumar. Built with React & Motion.
           </p>
         </div>
       </footer>
