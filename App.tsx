@@ -67,7 +67,7 @@ const App: React.FC = () => {
             <div className="relative w-64 h-64 md:w-96 md:h-96">
               <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-20 blur-3xl animate-pulse"></div>
               <img 
-                src="Ashish_Images.jpg" 
+                src="/Ashish_Images.jpg" 
                 alt="Ashish Kumar" 
                 className="relative z-10 w-full h-full rounded-full object-cover border-4 border-white/5 hover:grayscale-0 transition-all duration-500 shadow-2xl"
               />
