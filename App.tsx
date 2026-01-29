@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // Added missing Code2 import from lucide-react
@@ -41,6 +40,40 @@ const PROJECT_GRADIENTS = [
 
 
 const App: React.FC = () => {
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  message: '',
+});
+
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const form = e.currentTarget as HTMLFormElement & {
+    name: HTMLInputElement;
+    email: HTMLInputElement;
+    message: HTMLTextAreaElement;
+  };
+
+  const name = form.name.value;
+  const email = form.email.value;
+  const message = form.message.value;
+
+  const subject = `Contact from ${name}`;
+  const body = `
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+  `;
+
+  const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=ashishkr54434sa@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  window.open(mailtoLink, "_blank");
+};
+
+
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
 
@@ -378,19 +411,27 @@ const App: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <form className="space-y-6 p-8 rounded-3xl bg-[#111827] border border-white/5">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6 p-8 rounded-3xl bg-[#111827] border border-white/5"
+              >
+
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-400">Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
+                    name="name"
+                    required
                     placeholder="Your Name"
                     className="w-full px-5 py-4 rounded-xl bg-[#030712] border border-white/10 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 outline-none transition-all placeholder:text-slate-600"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-400">Email</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
+                    name="email"
+                    required
                     placeholder="your.email@example.com"
                     className="w-full px-5 py-4 rounded-xl bg-[#030712] border border-white/10 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 outline-none transition-all placeholder:text-slate-600"
                   />
@@ -398,7 +439,9 @@ const App: React.FC = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-400">Message</label>
                   <textarea 
-                    rows={6} 
+                    name="message"
+                    required
+                    rows={6}
                     placeholder="Type your message here..."
                     className="w-full px-5 py-4 rounded-xl bg-[#030712] border border-white/10 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 outline-none transition-all placeholder:text-slate-600 resize-none"
                   ></textarea>
